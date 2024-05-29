@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Episode {
+  createdAt   DateTime              @default(now())
+  description String?
+  id          String                @id @default(cuid())
+  liveFrom    DateTime?
+  speakers    EnumEpisodeSpeakers[]
+  title       String?
+  updatedAt   DateTime              @updatedAt
+  url         String?
+}
+
+enum EnumEpisodeSpeakers {
+  Option1
+}
